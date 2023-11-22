@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+.name
+{
+  display:flex;
+  justify-content: center;
+}
+.ft
+{
+ 
+  background-color: palegreen;
+}
+.main{
+  
+  padding-right: 0%;
+}
+.bottom{
+ text-align: center;  
+  
+}
+.call
+{
+  text-align: end;
+}
+.lp{
+  text-decoration: none;
+}
+.login
+{
+  height:100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background:linear-gradient(to right,(rgb(0, 234, 255), rgb(13, 0, 128), rgb(179, 0, 255)));
+  background-size:auto;
+  background-position: center;
+
+}
