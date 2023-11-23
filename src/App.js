@@ -5,9 +5,11 @@ import Home from './EventManagement/Home';
 import Login from './EventManagement/Login';
 import SignUp from './EventManagement/SignUp';
 import Footer from './EventManagement/Footer';
+import UserPage from './EventManagement/UserPage';
 function App() {
   return (
     <>
+    
     <Appbar/>
     <div className='container'>
        <Routes>
@@ -15,9 +17,10 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<SignUp/>}></Route>
         <Route path="/home" element={<Home/>}></Route>
+        <Route path="/userpage" element={<UserPage/>}></Route>
       </Routes> 
-     <Footer></Footer>
-    </div>
+     <Footer></Footer> 
+     </div>
     </>
   );
 }

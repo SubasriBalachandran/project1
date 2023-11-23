@@ -1,105 +1,106 @@
-import React, { useState } from "react";
-
-import {
-  TextField,
-  Button,
-  Typography,
-  Paper,
-  Box,
-  Container,
-} from "@mui/material";
+import React, { useState ,useEffect} from "react";
+import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
+import axios from 'axios';
+import { toast ,ToastContainer} from "react-toastify";
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, emailUpdate] = useState("",[]);
+  const [password, passwordUpdate] = useState("");
 
+  // useEffect(()=>
+  // {
+  //   axios.get('http://localhost:4000/users').then((res)=>{
+  //     setEmail(res.email)
+  //     setPassword(res.password)
+  //   })
+  // },[])
+  
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    emailUpdate(e.target.value);
   };
 
   const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
+    passwordUpdate(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(validate())
+    {
 
-    console.log("Email:", email);
-    console.log("Password:", password);
+      fetch("http://localhost:4000/users/"+email).then((res)=>{
+        return res.json();
+      }).then((resp)=>{
+        console.log(resp)
+    }).catch((err)=>{
+      toast.error("Login failed due to :"+err.message);
+    })
+    }
   };
+  const validate=()=>
+  {
+    let result=true;
+    if(email==='' ||email===null){
+    return false;
+    toast("Please Enter Valid EmailID");
+    }
+    if(password==='' ||password===null){
+    return false;
+    toast.warning("Enter valid password");
+    }
+    return result;
+  }
 
   return (
-    <div
-    className="login"   >
-      <Paper
-        style={{
-          textAlign: "center",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: 10,
-          maxWidth: 500,
-          margin: "auto",
-          marginTop: 130,
-          backgroundColor: "#7439db",
-          backgroundImage:
-            'url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQYiRjZ_iuOepnNoqhFs4gXogvjwrHKTh4kiw&usqp=CAU")',
-        }}
-      >
-        <div style={{ paddding: "5", borderRadius: "10" }}>
-          <center>
-            {" "}
-            <Typography component="h3" variant="h3">
-              USER LOGIN
-            </Typography>
-            <p>Please login to continue</p>
-          </center>
-          <form onSubmit={handleSubmit}>
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              type="email"
-              value={email}
-              onChange={handleEmailChange}
-              required
-            />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              fullWidth
-              id="password"
-              label="Password"
-              name="password"
-              type="password"
-              value={password}
-              onChange={handlePasswordChange}
-              required
-            />
-            <br></br>
-            <br></br>
-            <Box display="flex" justifyContent="center" alignItems="center">
-              <Button variant="contained" style={{ backgroundColor: "black" }}>
-                <Link
-                  to="/home"
-                  style={{ textDecoration: "none", color: "white" }}
-                >
-                  LOGIN
-                </Link>
-              </Button>
-            </Box>
-            <br></br>
-            <br></br>
-            <Typography>
-              Don't have an account?&emsp;
-              <Link to="/signup">Register</Link>
-            </Typography>
-          </form>
-        </div>
-      </Paper>
+    <div className="login">
+      <form onSubmit={handleSubmit}>
+        <center>
+          <Typography
+            component="h3"
+            variant="h3"
+            color="white"
+            letterSpacing={3}
+            marginTop={2}
+          >
+            USER LOGIN
+          </Typography>
+          <p>Please login to continue</p>
+        </center>
+        <label>Email Address</label>
+        <input
+          id="email"
+          label="Email Address"
+          name="email"
+          type="email"
+          value={email}
+          onChange={handleEmailChange}
+          required
+        />
+        <label>Password</label>
+        <input
+          id="password"
+          label="Password"
+          name="password"
+          type="password"
+          value={password}
+          onChange={handlePasswordChange}
+          required
+        />
+        <center>
+          <Button  type="submit" className="button">
+            <Link to="/userpage" style={{ textDecoration: "none", color: "white" }}>
+              LOGIN
+            </Link>
+          </Button>
+        </center>
+        <p>Forgot password?</p>
+        <Typography paddingLeft={4}>
+          Don't have an account?&emsp;
+          <Link to="/signup" style={{ textDecoration: "none", color: "black" }}>
+            Register
+          </Link>
+        </Typography>
+      </form>
     </div>
   );
 };
