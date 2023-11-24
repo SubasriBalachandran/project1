@@ -1,55 +1,41 @@
-import React, { useState ,useEffect} from "react";
+import React, { useState } from "react";
 import { Button, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
-import axios from 'axios';
-import { toast ,ToastContainer} from "react-toastify";
+import { useEffect } from "react";
+import axios from "axios";
 const Login = () => {
-  const [email, emailUpdate] = useState("",[]);
-  const [password, passwordUpdate] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
 
-  // useEffect(()=>
-  // {
-  //   axios.get('http://localhost:4000/users').then((res)=>{
-  //     setEmail(res.email)
-  //     setPassword(res.password)
-  //   })
-  // },[])
-  
-  const handleEmailChange = (e) => {
-    emailUpdate(e.target.value);
-  };
+  // const handleEmailChange = (e) => {
+  //   setEmail(e.target.value);
+  // };
 
-  const handlePasswordChange = (e) => {
-    passwordUpdate(e.target.value);
-  };
+  // const handlePasswordChange = (e) => {
+  //   setPassword(e.target.value);
+  // };
+  const[data,setData]=useState(
+    {
+      email:"",
+      password:""
+    }
+  );
+  const handleInput=(e)=>{
+    setData({...data,[e.target.name]:e.target.value})
+  }
+  useEffect(()=>
+  {
+    axios.get(' http://localhost:4000/users')
+    .then(res=>console.log(res))
+    .catch(err=>console.log(err));
+  },[])
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if(validate())
-    {
 
-      fetch("http://localhost:4000/users/"+email).then((res)=>{
-        return res.json();
-      }).then((resp)=>{
-        console.log(resp)
-    }).catch((err)=>{
-      toast.error("Login failed due to :"+err.message);
-    })
-    }
+    console.log("Email:", data.email);
+    console.log("Password:", data.password);
   };
-  const validate=()=>
-  {
-    let result=true;
-    if(email==='' ||email===null){
-    return false;
-    toast("Please Enter Valid EmailID");
-    }
-    if(password==='' ||password===null){
-    return false;
-    toast.warning("Enter valid password");
-    }
-    return result;
-  }
 
   return (
     <div className="login">
@@ -69,11 +55,10 @@ const Login = () => {
         <label>Email Address</label>
         <input
           id="email"
-          label="Email Address"
           name="email"
           type="email"
-          value={email}
-          onChange={handleEmailChange}
+          value={data.email}
+          onChange={handleInput}
           required
         />
         <label>Password</label>
@@ -82,15 +67,16 @@ const Login = () => {
           label="Password"
           name="password"
           type="password"
-          value={password}
-          onChange={handlePasswordChange}
+          value={data.password}
+          onChange={handleInput}
           required
         />
         <center>
-          <Button  type="submit" className="button">
-            <Link to="/userpage" style={{ textDecoration: "none", color: "white" }}>
+          <Button className="button" type="submit" style={{color:"white"}}>
+            LOGIN
+            {/* <Link to="/home" style={{ textDecoration: "none", color: "white" }}>
               LOGIN
-            </Link>
+            </Link> */}
           </Button>
         </center>
         <p>Forgot password?</p>

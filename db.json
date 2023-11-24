@@ -1,22 +1,62 @@
 {
-    "users":[
-        {
-            "id":1,
-            "name":"suba",
-            "email":"abc@gmail.com",
-            "password":"qwert"
-        },
-        {
-            "id":2,
-            "name":"sub2",
-            "email":"abcd@gmail.com",
-            "password":"qwerty123"
-        },
-        {
-            "id":2,
-            "name":"subas",
-            "email":"abcde@gmail.com",
-            "password":"qwerty@123"
-        }
-    ]
+  "users": [
+    {
+      "id": 1,
+      "name": "suba",
+      "email": "abddc@gmail.com",
+      "password": "qwert",
+      "state": "Tamilnadu",
+      "phone": 9383759393
+    },
+    {
+      "id": 2,
+      "name": "subbha",
+      "email": "avvdsbc@gmail.com",
+      "password": "qwervsdt",
+      "state": "Tamilnadu",
+      "phone": 9383759393
+    },
+    {
+      "id": 3,
+      "name": "subha",
+      "email": "abc@gmail.com",
+      "password": "qwedsfrt",
+      "state": "Tamil",
+      "phone": 9333759393
+    },
+    {
+      "post": {
+        "name": "Subasri",
+        "email": "subasri0898@gmail.com",
+        "password": "dghdghdh",
+        "state": "TAMILNADU",
+        "phone": "9342484008",
+        "Name": "Subasri",
+        "State": "TAMILNADU"
+      },
+      "id": 4
+    },
+    {
+      "post": {
+        "name": "Subasri",
+        "email": "subasri0898@gmail.com",
+        "password": "dghdghdh",
+        "state": "TAMILNADU",
+        "phone": "9342484008",
+        "Name": "Subasri",
+        "State": "TAMILNADU"
+      },
+      "id": 5
+    },
+    {
+      "post": {
+        "name": "sri",
+        "email": "sri0123@gmail.com",
+        "password": "mpokk",
+        "state": "TAMILNADU",
+        "phone": "9342484008"
+      },
+      "id": 6
+    }
+  ]
 }
